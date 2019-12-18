@@ -42,12 +42,13 @@ int is_palindrome(listint_t **head)
 			currentA = currentA->next;
 			currentB = temp;
 			temp = currentA;
+
+			while (temp->next != currentB)
+				temp = temp->next;
 		}
-		while (temp->next != currentB)
-			temp = temp->next;
-		i++;
 
 	}
+
 	return (1);
 
 }
