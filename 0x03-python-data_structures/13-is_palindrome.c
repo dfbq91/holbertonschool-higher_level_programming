@@ -14,7 +14,7 @@ int is_palindrome(listint_t **head)
 	listint_t *currentA;
 	listint_t *currentB;
 	listint_t *temp;
-	int nnodes = 0;
+	int nnodes = 1;
 	int i = 0;
 
 	if (*head == NULL)
@@ -46,7 +46,8 @@ int is_palindrome(listint_t **head)
 			while (temp->next != currentB)
 				temp = temp->next;
 		}
-
+		if (currentB->n == temp->n)
+			return (1);
 	}
 
 	return (1);
