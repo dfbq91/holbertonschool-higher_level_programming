@@ -2,5 +2,7 @@
 def search_replace(my_list, search, replace):
     if my_list:
         newlist = my_list.copy()
-        newlist = [replace if x == search else x for x in newlist]
+        for n, i in enumerate(newlist):
+            if i == search:
+                newlist[n] = replace
         return newlist
