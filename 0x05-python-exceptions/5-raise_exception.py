@@ -1,2 +1,2 @@
 def raise_exception():
-    raise TypeError('Hola')
+    raise TypeError()
