@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''0-square.py: Create a square class with size'''
+'''0-square.py: Create a square class with size and area'''
 
 
 class Square:
@@ -11,3 +11,7 @@ class Square:
             raise TypeError("size must be an integer")
         if size < 0:
             raise ValueError("size must be >= 0")
+
+    def area(self):
+        '''return area of a square'''
+        return self.__size * self.__size
