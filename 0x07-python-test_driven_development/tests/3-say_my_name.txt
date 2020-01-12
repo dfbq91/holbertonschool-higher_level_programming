@@ -1,0 +1,45 @@
+3-say_my_name
+======================
+
+	>>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Test cases:
+
+>>> say_my_name("John", "Smith")
+My name is John Smith
+
+>>> say_my_name("Walter", "White")
+My name is Walter White
+
+>>> say_my_name("Bob")
+My name is Bob 
+
+>>> try:
+...     print(say_my_name(5, "Jam"))
+... except Exception as e:
+...     print(e)
+first_name must be a string
+
+>>> try:
+...     print(say_my_name("Django", 5))
+... except Exception as e:
+...     print(e)
+last_name must be a string
+
+>>> try:
+...	print(say_my_name("Diego", "Fernando", "Betancourt"))
+... except Exception as e:
+...	print(e)
+say_my_name() takes from 1 to 2 positional arguments but 3 were given
+
+>>> try:
+...	print(say_my_name())
+... except Exception as e:
+...	print(e)
+say_my_name() missing 1 required positional argument: 'first_name'
+
+>>> try:
+...	print(say_my_name(None, "Django"))
+... except Exception as e:
+...	print(e)
+first_name must be a string
