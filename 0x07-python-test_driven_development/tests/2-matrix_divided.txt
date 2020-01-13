@@ -11,6 +11,9 @@ Test cases:
 >>> matrix_divided([1, 2, 3], 3)
 [[0.33, 0.67, 1.0]]
 
+>>> len(matrix_divided.__doc__) > 0
+True
+
 >>> try:
 ...	print(matrix_divided([1, 2, 3], [4, 5, 62, 22], 3))
 ... except Exception as e:
@@ -46,3 +49,9 @@ ZeroDivisionError
 ... except Exception as e:
 ... 	print(e)
 div must be a number
+
+>>> try:
+...	print(matrix_divided(00002, 000009))
+... except Exception as e:
+... 	print(e)
+invalid token
