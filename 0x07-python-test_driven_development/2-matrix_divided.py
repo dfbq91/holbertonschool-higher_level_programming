@@ -12,11 +12,11 @@ def matrix_divided(matrix, div):
     msg1 = "matrix must be a matrix (list of lists) of integers/floats"
 
     if type(matrix) is not list:
-        raise TypeError("msg1")
+        raise TypeError(msg1)
 
     for checkrow in matrix:
         if type(checkrow) is not list:
-            raise TypeError("msg1")
+            raise TypeError(msg1)
 
     for checkrow in matrix:
         if len(checkrow) != len(matrix[0]):
@@ -27,8 +27,11 @@ def matrix_divided(matrix, div):
     for i in matrix:
         for j in i:
             if type(j) == int or type(j) == float:
-                new_matrix.append([round(j / div, 2)])
+                continue
             else:
                 raise TypeError(msg1)
+
+    for i in matrix:
+        new_matrix.append([round((j / div), 2) for j in i])
 
     return new_matrix
