@@ -13,7 +13,7 @@ class Rectangle:
         '''init values for an object of rectangle class'''
         self.width = width
         self.height = height
-        type(self).number_of_instances += 1
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -70,11 +70,11 @@ class Rectangle:
     def __repr__(self):
         '''return a string representation of the rectangle
         to be able to recreate a new instance by using eval()'''
-        return 'Rectangle(%d, %d)' % (self.__width, self.__height)
+        return("Rectangle({}, {})".format(self.width, self.height))
 
     def __del__(self):
         '''Delete an object(rectangle)'''
-        type(self).number_of_instances -= 1
+        Rectangle.number_of_instances -= 1
         print('Bye rectangle...')
 
     @staticmethod
@@ -92,4 +92,4 @@ class Rectangle:
     @classmethod
     def square(cls, size=0):
         '''returns a new Rectangle instance with width == height == size'''
-        return cls(size)
+        return Rectangle(size, size)
