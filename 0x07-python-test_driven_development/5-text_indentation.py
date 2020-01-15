@@ -5,18 +5,20 @@
 def text_indentation(text):
     '''Prints a text with a space after each of these characters: ., ? and :'''
     flag = 1
+    delimiters = ['?', '.', ':']
 
     if type(text) is not str:
         raise TypeError("text must be a string")
 
-    for i in text:
-        if i == ' ' and flag == 0:
+    for char in text:
+        if char == ' ' and flag == 1:
             continue
-        else:
+
+        if char == '.' or char == '?' or char == ':':
+            print("{}".format(char), end="")
+            print("\n")
             flag = 1
-            print(i, end='')
-        if i == '.' or i == '?' or i == ':':
+
+        else:
+            print(char, end="")
             flag = 0
-            print()
-            print()
-    print()

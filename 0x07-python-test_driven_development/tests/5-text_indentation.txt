@@ -42,7 +42,7 @@ Quae animi affectio suum cuique tribuens atque hanc, quam dico.
 
 >>> text_indentation("Hello? Como vas")
 Hello?
-
+<BLANKLINE>
 Como vas
 
 >>> try:
@@ -50,3 +50,9 @@ Como vas
 ... except as Except e:
 ...	print(e)
 text_indentation() missing 1 required positional argument: 'text'
+
+>>> try:
+...	print(text_indentation(None))
+... except as Except e:
+...	print(e)
+text must be a string
