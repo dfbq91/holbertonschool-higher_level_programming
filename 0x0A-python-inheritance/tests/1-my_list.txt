@@ -1,0 +1,21 @@
+1-my_list module
+======================
+
+Test cases:
+
+>>> MyList = __import__('1-my_list').MyList
+>>> a = MyList()
+>>> a.append(1)
+>>> a.append(4)
+>>> a.append(2)
+>>> a.append(3)
+>>> a.append(5)
+>>> print(a)
+[1, 4, 2, 3, 5]
+>>> a.print_sorted()
+[1, 2, 3, 4, 5]
+>>> b = MyList()
+>>> b.print_sorted()
+[]
+>>> isinstance(b, list)
+True
