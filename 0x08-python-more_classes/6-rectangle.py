@@ -58,7 +58,7 @@ class Rectangle:
         '''Print the rectangle using #'''
         rect_print = ""
         if self.__width == 0 or self.__height == 0:
-            return rec_print
+            return rect_print
         for y in range(self.__height):
             for x in range(self.__width):
                 rect_print += '#'
