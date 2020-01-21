@@ -3,6 +3,8 @@
 
 
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+
 class Rectangle(BaseGeometry):
     '''Subclass of BaseGeometry'''
     def __init__(self, width, height):
@@ -12,4 +14,3 @@ class Rectangle(BaseGeometry):
         self.__height = height
         super().area(width, height)
         self.__height = height
-        

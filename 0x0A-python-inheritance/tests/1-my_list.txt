@@ -19,3 +19,6 @@ Test cases:
 []
 >>> isinstance(b, list)
 True
+>>> c = MyList(-2)
+Traceback (most recent call last):
+TypeError: 'int' object is not iterable

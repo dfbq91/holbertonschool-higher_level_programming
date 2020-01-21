@@ -10,20 +10,26 @@ Test cases:
 >>> bg.integer_validator("my_int", 12)
 >>> bg.integer_validator("width", 89)
 
->>> try:
-...    bg.integer_validator("name", "John")
-... except Exception as e:
-...    print("[{}] {}".format(e.__class__.__name__, e))
-[TypeError] name must be an integer
+>>> bg.integer_validator("name", "John")
+Traceback (most recent call last):
+TypeError: name must be an integer
 
->>> try:
-...    bg.integer_validator("age", 0)
-... except Exception as e:
-...    print("[{}] {}".format(e.__class__.__name__, e))
-[ValueError] age must be greater than 0
+>> bg.integer_validator("name", "None")
+Traceback (most recent call last):
+TypeError: name must be an integer
 
->>> try:
-...    bg.integer_validator("distance", -4)
-... except Exception as e:
-...    print("[{}] {}".format(e.__class__.__name__, e))
-[ValueError] distance must be greater than 0
+>>> bg.integer_validator("name", [5,3,2])
+Traceback (most recent call last):
+TypeError: name must be an integer
+
+>>> bg.integer_validator("name")
+Traceback (most recent call last):
+TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+>>> bg.integer_validator("name", 3, "jola")
+Traceback (most recent call last):
+TypeError: integer_validator() takes 3 positional arguments but 4 were given
+
+>>> bg.integer_validator("name", -5)
+Traceback (most recent call last):
+ValueError: name must be greater than 0
