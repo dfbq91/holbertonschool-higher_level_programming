@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''task 12'''
 
+
 class Student:
     '''class with student elements'''
     def __init__(self, first_name, last_name, age):
