@@ -15,4 +15,3 @@ def read_lines(filename="", nb_lines=0):
                     break
                 print(lines, end='')
                 lines_printed += 1
-        print()
