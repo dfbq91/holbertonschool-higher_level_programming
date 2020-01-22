@@ -13,7 +13,7 @@ class Student:
         if attrs:
             new_dict = {}
             for element in attrs:
-                if hasattr(self, items):
+                if hasattr(self, element):
                     new_dict[element] = getattr(self, element)
         elif not attrs:
             return self.__dict__
