@@ -5,9 +5,9 @@ def read_lines(filename="", nb_lines=0):
         for line in file1:
             nlines += 1
     with open(filename, encoding='utf-8') as file1:
-        if nb_lines <= 0 or nb_lines > nlines:
-            lines_readed = file1.read()
-            print(lines_readed)
+        if nb_lines <= 0 or nb_lines >= nlines:
+            for lines in file1:
+                print(lines, end="")
         else:
             lines_printed = 0
             for lines in file1:
@@ -15,3 +15,4 @@ def read_lines(filename="", nb_lines=0):
                     break
                 print(lines, end='')
                 lines_printed += 1
+        print()
