@@ -21,9 +21,10 @@ class Square():
 
     def my_print(self):
         '''Print square from a given position'''
-        for y in range(self.position[1]):
-            print()
         if self.__size == 0:
+            print()
+            return
+        for y in range(self.position[1]):
             print()
         for i in range(self.size):
             for x in range(self.position[0]):
