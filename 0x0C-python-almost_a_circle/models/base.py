@@ -3,10 +3,11 @@
 
 
 import json
+import os
 
 
 class Base:
-    '''This class will be the “base” of all other classes in this project'''
+    '''This class will be the “base” of other subclasses in this project'''
 
     __nb_objects = 0
 
@@ -32,8 +33,39 @@ class Base:
             if list_objs is None:
                 f.write("[]")
             else:
-                JSON_string_representation = []
+                JSON_string_repr = []
                 for obj in list_objs:
-                    JSON_string_representation.append(obj.to_dictionary())
-                my_list = f.write(Base.to_json_string(JSON_string_representation))
+                    JSON_string_repr.append(obj.to_dictionary())
+                my_list = f.write(Base.to_json_string(JSON_string_repr))
             return my_list
+
+    @staticmethod
+    def from_json_string(json_string):
+        '''returns the list of the JSON string representation json_string'''
+        if json_string is None or json_string == []:
+            return []
+        else:
+            return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        '''returns an instance with all attributes already set'''
+        if cls.__name__ == "Rectangle":
+            dummy = cls(5, 5)
+        elif cls.__name__ == "Square":
+            dummy = cls(5)
+        dummy.update(**dictionary)
+        return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        '''returns a list of instances'''
+        new_list = []
+        try:
+            with open(str(cls.__name__) + ".json", encoding='utf-8') as f:
+                text = cls.from_json_string(f.read())
+        except IOError:
+            return new_list
+        for char in text:
+            new_list.append(cls.create(**char))
+        return new_list
