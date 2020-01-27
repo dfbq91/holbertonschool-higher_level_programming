@@ -20,14 +20,12 @@ class Square(Rectangle):
     @property
     def size(self):
         '''Returns size value assigned to an object'''
-        return self.__size
+        return self.width
 
     @size.setter
     def size(self, value):
         '''Assign size value to an object'''
-        self.width = value
         self.height = value
-        self.__size = value
 
     def update(self, *args, **kwargs):
         '''assigns an argument to each attribute: id, size, x and y'''
