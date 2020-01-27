@@ -9,6 +9,7 @@ class Square(Rectangle):
     '''Square as a subclass of Rectangle'''
 
     def __init__(self, size, x=0, y=0, id=None):
+        '''init values for square'''
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
@@ -28,10 +29,10 @@ class Square(Rectangle):
         '''Assign size value to an object'''
         if value <= 0:
             raise ValueError('width must be > 0')
-        elif type(value) is not int:
+        if type(value) is not int:
             raise TypeError('width must be an integer')
         else:
-            self.width = value
+            self.height = value
 
     def update(self, *args, **kwargs):
         '''assigns an argument to each attribute: id, size, x and y'''
