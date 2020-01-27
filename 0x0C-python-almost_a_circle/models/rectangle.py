@@ -79,7 +79,7 @@ class Rectangle(Base):
         for y in range(self.__y):
             print()
         for i in range(self.__height):
-            print(''.join('.' for x in range(self.__x)), end='')
+            print(''.join(' ' for x in range(self.__x)), end='')
             print(''.join('#' for j in range(self.__width)), end='')
             print()
 
