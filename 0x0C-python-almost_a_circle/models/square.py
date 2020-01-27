@@ -7,6 +7,7 @@ from models.rectangle import Rectangle
 
 class Square(Rectangle):
     '''Square as a subclass of Rectangle'''
+
     def __init__(self, size, x=0, y=0, id=None):
         super().__init__(size, size, x, y, id)
 
@@ -14,8 +15,8 @@ class Square(Rectangle):
         '''returns [Square] (<id>) <x>/<y> - <size>'''
         x = self.x
         y = self.y
-        size = self.width
-        return "[Square] ({}) {}/{} - {}".format(self.id, x, y, size)
+        s = self.width
+        return "[Square] ({}) {}/{} - {}".format(self.id, x, y, s)
 
     @property
     def size(self):
@@ -25,7 +26,12 @@ class Square(Rectangle):
     @size.setter
     def size(self, value):
         '''Assign size value to an object'''
-        self.height = value
+        if value <= 0:
+            raise ValueError('width must be > 0')
+        elif type(value) is not int:
+            raise TypeError('width must be an integer')
+        else:
+            self.width = value
 
     def update(self, *args, **kwargs):
         '''assigns an argument to each attribute: id, size, x and y'''
