@@ -12,6 +12,7 @@ class Base:
     __nb_objects = 0
 
     def __init__(self, id=None):
+        '''init values for Base'''
         if id is not None:
             self.id = id
         else:
@@ -62,7 +63,7 @@ class Base:
         '''returns a list of instances'''
         new_list = []
         try:
-            with open(str(cls.__name__) + ".json", encoding='utf-8') as f:
+            with open("{}.json".format(cls.__name__), 'w') as f:
                 text = cls.from_json_string(f.read())
         except IOError:
             return new_list

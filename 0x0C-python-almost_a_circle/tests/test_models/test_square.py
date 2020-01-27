@@ -1,14 +1,15 @@
 #!/usr/bin/python3
-'''Test cases for Rectangle module'''
+'''Test cases for Square module'''
 import unittest
 from models.rectangle import Rectangle
 from models.base import Base
+from models.square import Square
 import sys
 from io import StringIO
 import os
 
 
-class TestRectangle(unittest.TestCase):
+class TestSquare(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -34,113 +35,105 @@ class TestRectangle(unittest.TestCase):
         haga mención a este objeto'''
         pass
 
+    def test_creation_square(self):
+        '''Check if square is correctly created(task 10)'''
+        Base._Base__nb_objects = 0
+        str1 = "[Square] (1) 0/0 - 5"
+        self.assertEqual(str1, str(Square(5)))
+        s1 = Square(5)
+        self.assertEqual(s1.id, 2)
+
     def test_docstring(self):
         '''test if fun, methods, classes and modules have docstring'''
         self.assertIsNotNone(Base.__doc__)
 
-    def test_creation_rectangle(self):
-        '''Check if rentangle is correctly created(task 2)'''
-        Base._Base__nb_objects = 0
-        r1 = Rectangle(10, 2)
-        self.assertEqual(r1.id, 1)
-        r2 = Rectangle(2, 10)
-        self.assertEqual(r2.id, 2)
-        r3 = Rectangle(10, 2, 0, 0, 12)
-        self.assertEqual(r3.id, 12)
-
     def test_error_messages(self):
         '''Make sure value errors are raised (task 3)'''
         Base._Base__nb_objects = 0
-        self.assertRaises(TypeError, Rectangle, (5, 'h'))
-        self.assertRaises(TypeError, Rectangle, ('2', 4))
-        self.assertRaises(TypeError, Rectangle, (5, 2, {2}, 12))
-        self.assertRaises(TypeError, Rectangle, (5, 2, 3, [2, 3]))
+        self.assertRaises(TypeError, Square, ('h'))
+        self.assertRaises(TypeError, Square, (8, '4'))
+        self.assertRaises(TypeError, Square, (5, 2, {2}, 12))
+        self.assertRaises(TypeError, Square, (5, 2, [2, 3]))
         with self.assertRaises(ValueError):
-            Rectangle(height=5, width=-3)
-            Rectangle(0, 3)
-            Rectangle, (8, 3, -5, 5)
-            ValueError, Rectangle, (8, 3, 5, 0)
+            Square(size=5, x=-3)
+            Square(0, 3)
+            Square, (8, 3, -5, 5)
+            ValueError, Square, (8, 3, 5, 0)
         self.assertRaisesRegex(TypeError, "width must be an integer",
-                               Rectangle, "5", 'h')
-        self.assertRaisesRegex(TypeError, "height must be an integer",
-                               Rectangle, 5, 'h')
-        self.assertRaisesRegex(ValueError, "height must be > 0",
-                               Rectangle, 5, 0)
+                               Square, 'h')
         self.assertRaisesRegex(ValueError, "width must be > 0",
-                               Rectangle, -5, 3)
+                               Square, 0)
         self.assertRaisesRegex(ValueError, "x must be >= 0",
-                               Rectangle, 5, 3, -2, 4)
+                               Square, 5, -3, -2, 4)
         self.assertRaisesRegex(ValueError, "y must be >= 0",
-                               Rectangle, 5, 3, 2, -4)
+                               Square, 5, 3, -2, -4)
 
-    def test_area_rectangle(self):
-        '''Check if the area is correctly calculated (task 4)'''
+    def test_area_square(self):
+        '''Check if the area is correctly calculated'''
         Base._Base__nb_objects = 0
-        a1 = Rectangle(10, 2)
-        self.assertEqual(a1.area(), 20)
-        a2 = Rectangle(10, 3)
-        self.assertEqual(a2.area(), 30)
-        a3 = Rectangle(10, 3, 0, 0, 8)
-        self.assertEqual(a3.area(), 30)
+        a1 = Square(10)
+        self.assertEqual(a1.area(), 100)
+        a2 = Square(5)
+        self.assertEqual(a2.area(), 25)
         with self.assertRaises(TypeError):
-            r1 = Rectangle()
-            self.r1.area(1)
+            s1 = Square()
+            self.s1.area(1)
 
     def test_display_0(self):
         '''Check if display as # to stdout is the expected (task 5)'''
         var1 = sys.stdout
         sys.stdout = StringIO()
-        r1 = Rectangle(4, 6)
-        r1.display()
+        s1 = Square(4)
+        s1.display()
         out = sys.stdout.getvalue()
         sys.stdout.close()
         sys.stdout = var1
-        display = "####\n####\n####\n####\n####\n####\n"
+        display = "####\n####\n####\n####\n"
         self.assertEqual(display, out)
 
     def test_str_method(self):
         '''Check if the str method returns correctly (task 6)'''
         Base._Base__nb_objects = 0
-        str1 = "[Rectangle] (12) 2/1 - 4/6"
-        self.assertEqual(str1, str(Rectangle(4, 6, 2, 1, 12)))
-        str1 = "[Rectangle] (1) 1/0 - 5/5"
-        self.assertEqual(str1, str(Rectangle(5, 5, 1)))
+        str1 = "[Square] (12) 2/1 - 4"
+        self.assertEqual(str1, str(Square(4, 2, 1, 12)))
+        str1 = "[Square] (1) 5/1 - 5"
+        self.assertEqual(str1, str(Square(5, 5, 1)))
 
     def test_display_1(self):
         '''Check if display as # with x, y to stdout is
         the expected (task 7)'''
         var1 = sys.stdout
         sys.stdout = StringIO()
-        r1 = Rectangle(2, 3, 2, 2)
-        r1.display()
+        s1 = Square(4, 3, 2, 2)
+        s1.display()
         out = sys.stdout.getvalue()
         sys.stdout.close()
         sys.stdout = var1
-        display = "\n\n  ##\n  ##\n  ##\n"
+        display = "\n\n   ####\n   ####\n   ####\n   ####\n"
         self.assertEqual(display, out)
 
     def test_update_0(self):
         '''check if *args are working well'''
         Base._Base__nb_objects = 0
-        r1 = Rectangle(10, 10, 10, 10)
-        self.assertEqual(r1.__str__(), "[Rectangle] (1) 10/10 - 10/10")
-        r1.update(89)
-        self.assertEqual(r1.__str__(), "[Rectangle] (89) 10/10 - 10/10")
+        s1 = Square(10, 10, 10)
+        self.assertEqual(s1.__str__(), "[Square] (1) 10/10 - 10")
+        s1.update(89)
+        self.assertEqual(s1.__str__(), "[Square] (89) 10/10 - 10")
 
     def test_update_1(self):
         '''check if *kwargs are working well'''
         Base._Base__nb_objects = 0
-        r1 = Rectangle(10, 10, 10, 10)
-        self.assertEqual(r1.__str__(), "[Rectangle] (1) 10/10 - 10/10")
-        r1.update(height=89)
-        self.assertEqual(r1.__str__(), "[Rectangle] (1) 10/10 - 10/89")
-        r1.update(id=89, x=1, height=2, y=3, width=4)
-        self.assertEqual(r1.__str__(), "[Rectangle] (89) 1/3 - 4/2")
+        s1 = Square(10, 10, 10)
+        self.assertEqual(s1.__str__(), "[Square] (1) 10/10 - 10")
+        s1.update(size=89)
+        self.assertEqual(s1.__str__(), "[Rectangle] (1) 10/10 - 89")
+        s1.update(id=89, x=1, size=2, y=3)
+        self.assertEqual(s1.__str__(), "[Rectangle] (89) 1/3 - 2")
 
     def test_update_1(self):
         '''check if def_to_dictionary method returns a dictionary
         representation of a object (task 13)'''
         Base._Base__nb_objects = 0
-        r1 = Rectangle(10, 2, 1, 9)
-        self.assertEqual(r1.to_dictionary(),
-                         {'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10})
+        s1 = Square(10, 2, 1)
+        self.assertEqual(s1.to_dictionary(),
+                         {'x': 2, 'y': 1, 'id': 1, 'size': 10})

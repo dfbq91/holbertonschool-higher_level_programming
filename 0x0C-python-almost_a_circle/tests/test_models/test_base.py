@@ -34,10 +34,6 @@ class TestBase(unittest.TestCase):
         haga mención a este objeto'''
         pass
 
-    def test_id_attribute(self):
-        Base._Base__nb_objects = 0
-        self.assertEqual(self.b1.id, 1)
-        self.assertEqual(self.b2.id, 2)
-        self.assertEqual(self.b3.id, 3)
-        self.assertEqual(self.b4.id, 12)
-        self.assertEqual(self.b5.id, 4)
+    def test_docstring(self):
+        '''test if fun, methods, classes and modules have docstring'''
+        self.assertIsNotNone(Base.__doc__)
