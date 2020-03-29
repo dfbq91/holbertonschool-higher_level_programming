@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-# return first State object from the database hbtn_0e_6_usa
-# using SQLAlchemy
+'''return first State object from the database hbtn_0e_6_usa
+using SQLAlchemy'''
 
 import sys
 
@@ -16,7 +16,8 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
     result = session.query(State).order_by(State.id).first()
+
     if result is not None:
         print("{}: {}".format(result.id, result.name))
     else:
-        print(Nothing)
+        print("Nothing")
