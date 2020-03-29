@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# lists all State objects from the database hbtn_0e_6_usa
+# return first State object from the database hbtn_0e_6_usa
 # using SQLAlchemy
 
 import sys
@@ -15,7 +15,8 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    # equivalent to select SQL expression
-    result = session.query(State).order_by(State.id)
-    for row in result:
-        print("{}: {}".format(row.id, row.name))
+    result = session.query(State).first()
+    if result is not None:
+        print("{}: {}".format(result.id, result.name))
+    else:
+        print(Nothing)

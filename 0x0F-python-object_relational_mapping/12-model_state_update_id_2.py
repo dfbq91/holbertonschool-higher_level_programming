@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# lists all State objects from the database hbtn_0e_6_usa
+# update an State object to the database hbtn_0e_6_usa
 # using SQLAlchemy
 
 import sys
@@ -7,6 +7,7 @@ import sys
 from model_state import Base, State
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy import insert
 
 if __name__ == "__main__":
     engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
@@ -15,7 +16,7 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    # equivalent to select SQL expression
-    result = session.query(State).order_by(State.id)
-    for row in result:
-        print("{}: {}".format(row.id, row.name))
+
+    session.query(State).filter(State.id == 2).update({'name': 'New Mexico'})
+    session.commit()
+    session.flush()

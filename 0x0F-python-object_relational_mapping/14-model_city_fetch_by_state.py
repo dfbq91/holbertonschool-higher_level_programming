@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-# lists all State objects from the database hbtn_0e_6_usa
+# lists all City objects from the database hbtn_0e_14_usa
 # using SQLAlchemy
 
 import sys
 
 from model_state import Base, State
+from model_city import Base, City
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -16,6 +17,6 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
     # equivalent to select SQL expression
-    result = session.query(State).order_by(State.id)
-    for row in result:
-        print("{}: {}".format(row.id, row.name))
+    for s, c in session.query(State, City).\
+            filter(State.id == City.state_id).all():
+        print("{}: ({}) {}".format(s.name, c.id, c.name))

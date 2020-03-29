@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # lists all State objects from the database hbtn_0e_6_usa
+# that contains argv[4]
 # using SQLAlchemy
 
 import sys
@@ -15,7 +16,10 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    # equivalent to select SQL expression
-    result = session.query(State).order_by(State.id)
-    for row in result:
-        print("{}: {}".format(row.id, row.name))
+    result = session.query(State).filter(State.name.like(sys.argv[4])).\
+        order_by(State.id).all()
+    if result:
+        for row in result:
+            print(row.id)
+    else:
+        print("Not found")

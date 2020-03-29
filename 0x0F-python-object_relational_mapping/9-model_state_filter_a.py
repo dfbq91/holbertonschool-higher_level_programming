@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # lists all State objects from the database hbtn_0e_6_usa
+# that contains 'a'
 # using SQLAlchemy
 
 import sys
@@ -15,7 +16,7 @@ if __name__ == "__main__":
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    # equivalent to select SQL expression
-    result = session.query(State).order_by(State.id)
+    result = session.query(State).filter(State.name.like("%a%")).\
+        order_by(State.id).all()
     for row in result:
         print("{}: {}".format(row.id, row.name))
