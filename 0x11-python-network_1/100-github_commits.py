@@ -15,4 +15,4 @@ if __name__ == "__main__":
     jsoned = r.json()
     for i in jsoned:
         print("{}: {}".format(i.get('sha'),
-                                  i.get('commit').get('author').get('name')))
+                              i.get('commit').get('author').get('name')))
