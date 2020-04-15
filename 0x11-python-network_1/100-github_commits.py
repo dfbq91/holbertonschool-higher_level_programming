@@ -11,7 +11,7 @@ if __name__ == "__main__":
     owner = argv[2]
 
     r = requests.get('https://api.github.com/repos/{}/{}/commits'.
-                     format(owner, repo), {'per_page': 10})
+                     format(owner, repo), params={'per_page': 10})
     jsoned = r.json()
     for i in jsoned:
         print("{}: {}".format(i.get('sha'),
