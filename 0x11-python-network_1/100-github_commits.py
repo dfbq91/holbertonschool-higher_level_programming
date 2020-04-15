@@ -15,6 +15,7 @@ if __name__ == "__main__":
     jsoned = r.json()
     for i in jsoned:
         try:
-            print("{}: {}".format(i.get('sha'), i.get('commit')['author']['name']))
+            print("{}: {}".format(i.get('sha'),
+                                  i.get('commit').get('author').get('name')))
         except KeyError:
             print("None")
